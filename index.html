@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portafolio de Barista</title>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <style>
+        :root {
+            --bg-dark: #1e293b;
+            --bg-darker: #0f172a;
+            --text-light: #e2e8f0;
+            --text-primary: #93c5fd;
+            --accent-color: #3b82f6;
+            --card-background: rgba(255, 255, 255, 0.1);
+            --card-shadow: rgba(0, 0, 0, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            background: linear-gradient(to bottom right, var(--bg-dark), var(--bg-darker));
+            color: var(--text-light);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        /* Hero Section with Background Image */
+        .hero {
+            position: relative;
+            height: 70vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 3rem;
+            background-image: url('./assets/cafeteria.jpeg');
+            background-size: cover;
+            background-position: center;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 15px 30px var(--card-shadow);
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, rgba(15, 23, 42, 0.7), rgba(30, 41, 59, 0.9));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .hero-content {
+            background: var(--card-background);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 2.5rem;
+            max-width: 800px;
+            width: 90%;
+            text-align: center;
+        }
+
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+            letter-spacing: -1px;
+        }
+
+        .hero-subtitle {
+            font-size: 1.25rem;
+            color: var(--text-light);
+            max-width: 700px;
+            margin: 0 auto;
+            opacity: 0.9;
+        }
+
+        /* Sections with Rounded Squares */
+        .section {
+            background: white;
+            background: var(--card-background);
+            backdrop-filter: blur(15px);
+            border-radius: 20px;
+            box-shadow: 0 15px 30px var(--card-shadow);
+            margin-bottom: 2rem;
+            padding: 2.5rem;
+            overflow: hidden;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            color: var(--text-primary);
+            margin-bottom: 2rem;
+            font-weight: 600;
+        }
+
+        /* Sobre Mí Section */
+        .sobre-mi {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .sobre-mi-imagen {
+            flex: 0 0 300px;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 15px 30px var(--card-shadow);
+        }
+
+        .sobre-mi-imagen img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .sobre-mi-contenido {
+            flex: 1;
+        }
+
+        .sobre-mi-descripcion {
+            color: var(--text-light);
+            opacity: 0.9;
+            margin-bottom: 1.5rem;
+        }
+
+        .sobre-mi-detalles {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+        }
+
+        .detalle-item {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 1rem;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .detalle-titulo {
+            color: var(--text-primary);
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .detalle-valor {
+            color: var(--text-light);
+            opacity: 0.8;
+        }
+
+        
+        /* equipamiento */
+
+        .equipamiento-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+        
+        .equipamiento-card {
+            position: relative;
+            height: 400px;
+            border-radius: 20px;
+            overflow: hidden;
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: flex-end;
+            padding: 2rem;
+            color: var(--text-light);
+            transition: all 0.3s ease;
+        }
+        
+        .equipamiento-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, rgba(15, 23, 42, 0.4), rgba(30, 41, 59, 0.6));
+            opacity: 1;
+            transition: opacity 0.3s ease;
+            z-index: 1;
+        }
+        
+        .equipamiento-content {
+            position: relative;
+            z-index: 2;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(8px);
+            border-radius: 15px;
+            padding: 1.5rem;
+            width: 100%;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+            opacity: 1;
+            transition: all 0.3s ease;
+        }
+        
+        .equipamiento-card:hover .equipamiento-content {
+            opacity: 0;
+        }
+        
+        .equipamiento-card:hover::before {
+            opacity: 0;
+        }
+        
+        .equipamiento-card:hover {
+            transform: scale(1.05);
+        }
+        
+        /* Estilos específicos para cada card */
+        .equipamiento-card-maquina {
+            background-image: url('./assets/cafetera.jpeg');
+        }
+        
+        .equipamiento-card-origen {
+            background-image: url('./assets/cafeOrigen.jpeg');
+        }
+        
+        .equipamiento-card-herramientas {
+            background-image: url('./assets/portafiltro.jpeg');
+        }
+        
+        .equipamiento-titulo {
+            color: var(--text-primary);
+            margin-bottom: 0.75rem;
+            font-weight: 600;
+            font-size: 1.5rem;
+        }
+        
+        .equipamiento-detalles {
+            color: var(--text-light);
+            opacity: 0.9;
+        }
+        
+        .equipamiento-modelo {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            font-size: 1.25rem;
+        }
+        
+        /* Responsive Adjustments */
+        @media (max-width: 1024px) {
+            .equipamiento-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .equipamiento-grid {
+                grid-template-columns: 1fr;
+            }
+        
+            .equipamiento-card {
+                height: 350px;
+            }
+        }
+
+        /* Experiences Grid */
+        .experiencias-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        .experiencia-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(5px);
+            border-radius: 15px;
+            padding: 1.5rem;
+            text-align: center;
+            transition: transform 0.3s ease;
+            border: 1px solid rgba(59, 130, 246, 0.1);
+        }
+
+        .experiencia-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .experiencia-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            opacity: 0.8;
+        }
+
+        .experiencia-titulo {
+            color: var(--text-primary);
+            margin-bottom: 0.75rem;
+            font-weight: 600;
+        }
+
+        /* Gallery Grid */
+        .galeria-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+        }
+
+        .galeria-item {
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 20px var(--card-shadow);
+            transition: transform 0.3s ease;
+        }
+
+        .galeria-item:hover {
+            transform: scale(1.05);
+        }
+
+        .galeria-item img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .experiencias-grid,
+            .galeria-grid,
+            .sobre-mi-detalles {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .sobre-mi {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .sobre-mi-imagen {
+                margin-bottom: 1.5rem;
+                max-width: 400px;
+                width: 100%;
+            }
+
+            .hero-title {
+                font-size: 2.5rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .experiencias-grid,
+            .galeria-grid,
+            .sobre-mi-detalles {
+                grid-template-columns: 1fr;
+            }
+
+            .hero {
+                height: 50vh;
+            }
+
+            .hero-title {
+                font-size: 2rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Hero Section with Background Image -->
+        <section class="hero">
+            <div class="hero-overlay">
+                <div class="hero-content" data-aos="fade-up" data-aos-duration="1000">
+                    <h1 class="hero-title">Café como Arte</h1>
+                    <p class="hero-subtitle">
+                        Transformando granos en experiencias únicas, una taza a la vez
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sobre Mí Section -->
+        <section class="section sobre-mi">
+            <div class="sobre-mi-imagen" data-aos="fade-right" data-aos-duration="1000">
+                <img src="./assets/perfil .jpeg" alt="Retrato del Barista">
+            </div>
+            <div class="sobre-mi-contenido" data-aos="fade-left" data-aos-duration="1000">
+                <h2 class="section-title">Sobre Mí</h2>
+                    <p class="sobre-mi-descripcion">  
+                        Soy un barista autodidacta apasionado por el <strong>café</strong> y el arte de su <strong>preparación</strong>.  
+                        Con una curiosidad innata y dedicación, he aprendido de manera independiente  
+                        técnicas de <strong>vaporización de leche</strong>, <strong>latte art</strong>, y métodos de <strong>filtrado</strong>.  
+                        Estoy entusiasmado por seguir ampliando mis <strong>conocimientos</strong> y perfeccionando mis  
+                        <strong>habilidades</strong> en un entorno profesional. Mi objetivo es brindar <strong>experiencias únicas</strong> a los  
+                        clientes, combinando <strong>creatividad</strong>, <strong>técnica</strong> y <strong>pasión</strong> por el café.  
+                    </p>                
+                    <div class="sobre-mi-detalles">
+                        <div class="detalle-item">
+                            <h3 class="detalle-titulo">Experiencia</h3>
+                            <p class="detalle-valor">Autodidacta (2+ años practicando)</p>
+                        </div>
+                        <div class="detalle-item">
+                            <h3 class="detalle-titulo">Último Café Degustado</h3>
+                            <p class="detalle-valor">Delirante (Brasil)</p>
+                        </div>
+                        <div class="detalle-item">
+                            <h3 class="detalle-titulo">Técnicas Dominadas</h3>
+                            <p class="detalle-valor">Latte Art, Vaporización de Leche, Filtrados</p>
+                        </div>
+                        <div class="detalle-item">
+                            <h3 class="detalle-titulo">Especialidad</h3>
+                            <p class="detalle-valor">Bebidas con Leche y Métodos de Filtrado</p>
+                        </div>
+                    </div>
+            </div>                           
+        </section>
+
+        <!-- Experiences Section -->
+        <section class="section experiencias">
+            <h2 class="section-title" data-aos="fade-up">Mi Experiencia</h2>
+            <div class="experiencias-grid">
+                <div class="experiencia-card" data-aos="fade-right" data-aos-duration="1000">
+                    <div class="experiencia-icon">☕</div>
+                    <h3 class="experiencia-titulo">Arte en Cada Taza</h3>
+                    <p class="experiencia-descripcion">
+                        Experto en <strong>latte art</strong>, creando diseños que transforman cada bebida en una experiencia visual y deliciosa.
+                    </p>
+                </div>
+                <div class="experiencia-card" data-aos="fade-up" data-aos-duration="1000">
+                    <div class="experiencia-icon">🥛</div>
+                    <h3 class="experiencia-titulo">Bebidas con Base de Leche</h3>
+                    <p class="experiencia-descripcion">
+                        Especializado en la preparación de <strong>bebidas a base de leche</strong>, dominando técnicas de vaporización y texturización.
+                    </p>
+                </div>
+                <div class="experiencia-card" data-aos="fade-left" data-aos-duration="1000">
+                    <div class="experiencia-icon">🧊</div>
+                    <h3 class="experiencia-titulo">Bebidas Frías</h3>
+                    <p class="experiencia-descripcion">
+                        Creación de <strong>bebidas frías</strong> que destacan por su frescura y equilibrio en sabor, perfectas para cualquier ocasión.
+                    </p>
+                </div>
+                <div class="experiencia-card" data-aos="fade-right" data-aos-duration="1000">
+                    <div class="experiencia-icon">🔧</div>
+                    <h3 class="experiencia-titulo">Mantenimiento Básico</h3>
+                    <p class="experiencia-descripcion">
+                        Conocimientos en <strong>mantenimiento básico</strong> de máquinas de café, garantizando su funcionamiento óptimo.
+                    </p>
+                </div>
+                <div class="experiencia-card" data-aos="fade-up" data-aos-duration="1000">
+                    <div class="experiencia-icon">🌍</div>
+                    <h3 class="experiencia-titulo">Pasión por los Orígenes</h3>
+                    <p class="experiencia-descripcion">
+                        Explorador de <strong>cafés de origen</strong>. Mi último café fue del tostador Delirante, destacando por su perfil único.
+                    </p>
+                </div>
+            </div>
+        </section>
+        
+
+        <!-- Equipment Section HTML -->
+        <section class="section equipamiento">
+            <h2 class="section-title" data-aos="fade-up">Mi Equipamiento</h2>
+            <div class="equipamiento-grid">
+                <div class="equipamiento-card equipamiento-card-maquina" data-aos="fade-right" data-aos-duration="1000">
+                    <div class="equipamiento-content">
+                        <h3 class="equipamiento-titulo">Máquina de Café</h3>
+                        <div class="equipamiento-detalles">
+                            <p class="equipamiento-modelo">La Marzocco Linea PB</p>
+                            <p class="equipamiento-descripcion">
+                                Máquina de espresso profesional que garantiza extracción perfecta y consistencia en cada tiro.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="equipamiento-card equipamiento-card-origen" data-aos="fade-up" data-aos-duration="1000">
+                    <div class="equipamiento-content">
+                        <h3 class="equipamiento-titulo">Café de Origen</h3>
+                        <div class="equipamiento-detalles">
+                            <p class="equipamiento-modelo">Single Origin - Colombia</p>
+                            <p class="equipamiento-descripcion">
+                                Granos de especialidad de microlotes seleccionados, tostados en tueste medio para resaltar notas únicas.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="equipamiento-card equipamiento-card-herramientas" data-aos="fade-left" data-aos-duration="1000">
+                    <div class="equipamiento-content">
+                        <h3 class="equipamiento-titulo">Herramientas Profesionales</h3>
+                        <div class="equipamiento-detalles">
+                            <p class="equipamiento-modelo">Kit de Precisión</p>
+                            <p class="equipamiento-descripcion">
+                                Incluye molino Mahlkönig, báscula de precisión Acaia, tamper personalizado y termómetro digital.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Gallery Section -->
+        <section class="section galeria">
+            <h2 class="section-title" data-aos="fade-up">Mi Galería</h2>
+            <div class="galeria-grid">
+                <div class="galeria-item" data-aos="zoom-in" data-aos-duration="1000">
+                    <img src="./assets/cafe1.jpeg" alt="Trabajo de Barista 1">
+                </div>
+                <div class="galeria-item" data-aos="zoom-in" data-aos-duration="1000" data-aos-delay="200">
+                    <img src="./assets/cafe2.jpeg" alt="Trabajo de Barista 2">
+                </div>
+                <div class="galeria-item" data-aos="zoom-in" data-aos-duration="1000" data-aos-delay="400">
+                    <img src="./assets/cafe3.jpeg" alt="Trabajo de Barista 3">
+                </div>
+                <div class="galeria-item" data-aos="zoom-in" data-aos-duration="1000" data-aos-delay="600">
+                    <img src="./assets/cafe4.jpeg" alt="Trabajo de Barista 4">
+                </div>
+                <div class="galeria-item" data-aos="zoom-in" data-aos-duration="1000" data-aos-delay="800">
+                    <img src="./assets/cafe5.jpeg" alt="Trabajo de Barista 5">
+                </div>
+                <div class="galeria-item" data-aos="zoom-in" data-aos-duration="1000" data-aos-delay="1000">
+                    <img src="./assets/cafe6.jpeg" alt="Trabajo de Barista 6">
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 1000,
+            once: false,
+            mirror: true
+        });
+    </script>
+</body>
+</html>
