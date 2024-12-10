@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portafolio de Barista</title>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <style>
+        :root {
+            --bg-dark: #1e293b;
+            --bg-darker: #0f172a;
+            --text-light: #e2e8f0;
+            --text-primary: #93c5fd;
+            --accent-color: #3b82f6;
+            --card-background: rgba(255, 255, 255, 0.1);
+            --card-shadow: rgba(0, 0, 0, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            background: linear-gradient(to bottom right, var(--bg-dark), var(--bg-darker));
+            color: var(--text-light);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        /* Hero Section with Background Image */
+        .hero {
+            position: relative;
+            height: 70vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 3rem;
+            background-image: url('./assets/code.jpg');
+            background-size: cover;
+            background-position: center;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 15px 30px var(--card-shadow);
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, rgba(15, 23, 42, 0.7), rgba(30, 41, 59, 0.9));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .hero-content {
+            background: var(--card-background);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 2.5rem;
+            max-width: 800px;
+            width: 90%;
+            text-align: center;
+        }
+
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+            letter-spacing: -1px;
+        }
+
+        .hero-subtitle {
+            font-size: 1.25rem;
+            color: var(--text-light);
+            max-width: 700px;
+            margin: 0 auto;
+            opacity: 0.9;
+        }
+
+        /* Sections with Rounded Squares */
+        .section {
+            background: white;
+            background: var(--card-background);
+            backdrop-filter: blur(15px);
+            border-radius: 20px;
+            box-shadow: 0 15px 30px var(--card-shadow);
+            margin-bottom: 2rem;
+            padding: 2.5rem;
+            overflow: hidden;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            color: var(--text-primary);
+            margin-bottom: 2rem;
+            font-weight: 600;
+        }
+
+        /* Sobre Mí Section */
+        .sobre-mi {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .sobre-mi-imagen {
+            flex: 0 0 300px;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 15px 30px var(--card-shadow);
+        }
+
+        .sobre-mi-imagen img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .sobre-mi-contenido {
+            flex: 1;
+        }
+
+        .sobre-mi-descripcion {
+            color: var(--text-light);
+            opacity: 0.9;
+            margin-bottom: 1.5rem;
+        }
+
+        .sobre-mi-detalles {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+        }
+
+        .detalle-item {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 1rem;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .detalle-titulo {
+            color: var(--text-primary);
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .detalle-valor {
+            color: var(--text-light);
+            opacity: 0.8;
+        }
+
+        /* skills */
+
+        .skills-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+        }
+        
+        .skills-title {
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+            text-align: center;
+        }
+        
+        .skills-subtitle {
+            color: var(--text-light);
+            margin-bottom: 1rem;
+            text-align: center;
+            max-width: 600px;
+        }
+        
+        .skills {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+        
+        .skill-tag {
+            background-color: var(--card-background);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            color: var(--text-primary);
+            font-size: 0.8rem;
+        }        
+
+
+        /* Experiences Grid */
+
+        .experiencia-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(5px);
+            border-radius: 15px;
+            padding: 1.5rem;
+            text-align: center;
+            transition: transform 0.3s ease;
+            border: 1px solid rgba(59, 130, 246, 0.1);
+        }
+
+        .experiencia-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .experiencia-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            opacity: 0.8;
+        }
+
+        .experiencia-titulo {
+            color: var(--text-primary);
+            margin-bottom: 0.75rem;
+            font-weight: 600;
+        }
+
+        /* Gallery Grid */
+        .projects {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+            width: 100%;
+        }
+
+        .project-card {
+            background-color: var(--card-background);
+            border-radius: 10px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 6px var(--card-shadow);
+            transition: transform 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .project-card:hover {
+            transform: scale(1.03);
+        }
+
+        .project-header {
+            height: 200px;
+            width: 100%;
+            background-size: cover;
+            background-position: center;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+        }
+
+        .project-card h3 {
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+            text-align: center;
+        }
+
+        .project-card p {
+            text-align: center;
+        }
+
+        .project-technologies {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin: 0.5rem 0;
+        }
+
+        .tech-bubble {
+            background-color: var(--bg-darker);
+            color: var(--text-primary);
+            padding: 0.2rem 0.6rem;
+            border-radius: 20px;
+            font-size: 0.7rem;
+        }
+
+        .project-links {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: auto;
+        }
+
+        .project-links a {
+            color: var(--accent-color);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .project-links a:hover {
+            color: var(--text-primary);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .experiencias-grid,
+            .galeria-grid,
+            .sobre-mi-detalles {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .sobre-mi {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .sobre-mi-imagen {
+                margin-bottom: 1.5rem;
+                max-width: 400px;
+                width: 100%;
+            }
+
+            .hero-title {
+                font-size: 2.5rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .experiencias-grid,
+            .galeria-grid,
+            .sobre-mi-detalles {
+                grid-template-columns: 1fr;
+            }
+
+            .hero {
+                height: 50vh;
+            }
+
+            .hero-title {
+                font-size: 2rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Hero Section with Background Image -->
+        <section class="hero">
+            <div class="hero-overlay">
+                <div class="hero-content" data-aos="fade-up" data-aos-duration="1000">
+                    <h1 class="hero-title">Transformando ideas en <strong>código</strong></h1>
+                    <p class="hero-subtitle" data-aos="fade-up" data-aos-duration="1500">
+                        Desarrollo <strong>back end</strong> robusto y escalable, con <strong>pasión</strong> por la <strong>innovación tecnológica</strong>.
+                    </p>
+                </div>
+            </div>
+        </section>
+    
+        <!-- Sobre Mí Section -->
+        <section class="section sobre-mi">
+            <div class="sobre-mi-imagen" data-aos="fade-right" data-aos-duration="1000">
+                <img src="./assets/perfil .jpeg" alt="Retrato del Barista">
+            </div>
+            <div class="sobre-mi-contenido" data-aos="fade-left" data-aos-duration="1000">
+                <h2 class="section-title">Sobre Mí</h2>
+                <p class="sobre-mi-descripcion">
+                    Soy <strong>desarrollador Backend</strong> con experiencia en la creación de aplicaciones web utilizando <strong>PHP</strong> y <strong>Symfony</strong>. Mi enfoque está en el desarrollo de soluciones <strong>robustas</strong>, <strong>escalables</strong> y <strong>eficientes</strong>, con sólidos conocimientos en <strong>MySQL</strong> y la integración de <strong>APIs</strong>. Me especializo en escribir <strong>código limpio</strong> y de fácil mantenimiento, siguiendo <strong>buenas prácticas de desarrollo</strong>. Además, tengo experiencia trabajando con <strong>Docker</strong> para entornos de desarrollo y <strong>Git</strong> para control de versiones.
+                </p>
+                <p style="margin-bottom: 2rem;" data-aos="fade-up" data-aos-duration="1500">
+                    Fuera del trabajo, me gusta desarrollar <strong>mis propios proyectos</strong> con diferentes tecnologías para seguir mejorando y explorar nuevas soluciones. Actualmente, estoy cursando la <strong>Licenciatura en Informática</strong> y continuo enfocándome en seguir ampliando mis conocimientos en el ámbito <strong>backend</strong>, aportando valor a proyectos tecnológicos <strong>innovadores</strong>.
+                </p>                
+                <div class="sobre-mi-detalles">
+                    <div class="detalle-item" data-aos="fade-up" data-aos-duration="1000">
+                        <h3 class="detalle-titulo">Experiencia</h3>
+                        <p class="detalle-valor">+2 años en desarrollo <strong>back end</strong></p>
+                    </div>
+                    <div class="detalle-item" data-aos="fade-up" data-aos-duration="1200">
+                        <h3 class="detalle-titulo">Tecnologías Principales</h3>
+                        <p class="detalle-valor"><strong>Symfony</strong>, <strong>PHP</strong>, <strong>MySQL</strong>, <strong>Python</strong>, <strong>Docker</strong></p>
+                    </div>
+                    <div class="detalle-item" data-aos="fade-up" data-aos-duration="1400">
+                        <h3 class="detalle-titulo">Metodologías</h3>
+                        <p class="detalle-valor"><strong>Agile</strong>, <strong>Scrum</strong>, <strong>TDD</strong></p>
+                    </div>
+                    <div class="detalle-item" data-aos="fade-up" data-aos-duration="1600">
+                        <h3 class="detalle-titulo">Especialidad</h3>
+                        <p class="detalle-valor"><strong>Symfony</strong>, <strong>Docker</strong></p>
+                    </div>
+                </div>
+            </div>                           
+        </section>
+    
+        <!-- Experiences Section -->
+        <section class="section experiencias">
+            <h2 class="section-title" data-aos="fade-up" data-aos-duration="1000"><strong>Habilidades Técnicas</strong></h2>
+            <div class="experiencias-grid">
+                <div class="skills-section" data-aos="fade-up" data-aos-duration="1200">
+                    <p class="skills-subtitle">
+                        Un conjunto diverso de herramientas y tecnologías que me permiten crear soluciones 
+                        <strong>innovadoras</strong> y <strong>eficientes</strong>.
+                    </p>
+                    <div class="skills">
+                        <span class="skill-tag"><strong>PHP</strong></span>
+                        <span class="skill-tag"><strong>Symfony</strong></span>
+                        <span class="skill-tag"><strong>MySQL</strong></span>
+                        <span class="skill-tag"><strong>API Rest</strong></span>
+                        <span class="skill-tag"><strong>Docker</strong></span>
+                        <span class="skill-tag"><strong>Git</strong></span>
+                        <span class="skill-tag"><strong>Python</strong></span>
+                        <span class="skill-tag"><strong>JavaScript</strong></span>
+                        <span class="skill-tag"><strong>Linux</strong></span>
+                        <span class="skill-tag"><strong>C</strong></span>                        
+                    </div>
+                </div>
+            </div>
+        </section>
+    
+        <!-- Gallery Section -->
+        <section id="proyectos" class="projects">
+            <div class="project-card" data-aos="fade-up" data-aos-duration="1000">
+                <div class="project-header" style="background-image: url('/assets/proyecto1.jpeg');"></div>
+                <h3>CaféBot</h3>
+                <p>Sistema automatizado ☕ que recopila precios de café en línea con Selenium 🔍 y organiza datos mediante una API Flask 🌐. Incluye un bot de Telegram 🤖 que permite consultar cafés según rango de precios 💰, listar los más baratos 💸 o caros 💎, y más funciones útiles. Tecnologías: Python 🐍, Flask y API Telegram.</p>
+                <div class="project-technologies">
+                    <span class="tech-bubble"><strong>Python</strong></span>
+                    <span class="tech-bubble"><strong>Flask</strong></span>
+                    <span class="tech-bubble"><strong>Selenium</strong></span>
+                    <span class="tech-bubble"><strong>Api Rest</strong></span>
+                    <span class="tech-bubble"><strong>Docker</strong></span>
+                </div>
+                <div class="project-links">
+                    <a href="https://github.com/Tobias-Stani/python-mysql-docker/blob/main/app/scraping/preciosCafes/mensajes/rangosPrecios.py">Ver Código</a>
+                    <a href="#">Demo</a>
+                </div>
+            </div>
+    
+            <div class="project-card" data-aos="fade-up" data-aos-duration="1200">
+                <div class="project-header" style="background-image: url('/assets/proyecto1.jpeg');"></div>
+                <h3>Ticket Watcher</h3>
+                <p>Sistema automatizado 🎟️ que simplifica la búsqueda de entradas deportivas con web scraping 🔍 (Python, Selenium) y programación automática ⏰ (Crontab). Envía alertas directas ✉️ a través de Telegram cuando encuentra entradas disponibles, asegurando que no te olvides de ningún evento importante.</p>
+                <div class="project-technologies">
+                    <span class="tech-bubble"><strong>Python</strong></span>
+                    <span class="tech-bubble"><strong>Flask</strong></span>
+                    <span class="tech-bubble"><strong>Selenium</strong></span>
+                    <span class="tech-bubble"><strong>Api Rest</strong></span>
+                    <span class="tech-bubble"><strong>Docker</strong></span>
+                </div>
+                <div class="project-links">
+                    <a href="https://github.com/Tobias-Stani/python-mysql-docker/blob/main/app/scraping/entradas/scrapRiver.py">Ver Código</a>
+                    <a href="#">Demo</a>
+                </div>
+            </div>
+    
+            <div class="project-card" data-aos="fade-up" data-aos-duration="1400">
+                <div class="project-header" style="background-image: url('./assets/proyectoFocus.jpeg');"></div>
+                <h3>FocusTrack</h3>
+                <p>
+                    Desarrollé una app académica 📚 que organiza tareas y optimiza el estudio. Incluye calendario 📅 para actividades, cronómetro ⏱️ que compara tiempo con metas, alertas 🎯 al cumplir objetivos y una API 🔗 que envía recordatorios automáticos a Telegram. Una herramienta ideal para maximizar la productividad estudiantil.</p>
+                <div class="project-technologies">
+                    <span class="tech-bubble"><strong>Symfony</strong></span>
+                    <span class="tech-bubble"><strong>Php</strong></span>
+                    <span class="tech-bubble"><strong>MySQL</strong></span>
+                    <span class="tech-bubble"><strong>Docker</strong></span>
+                    <span class="tech-bubble"><strong>Api Rest</strong></span>
+                </div>
+                <div class="project-links">
+                    <a href="https://github.com/Tobias-Stani/To-do-notifier">Ver Código</a>
+                    <a href="#">Demo</a>
+                </div>
+            </div>
+    
+            <div class="project-card" data-aos="fade-up" data-aos-duration="1600">
+                <div class="project-header" style="background-image: url('/assets/proyectoRandom.jpeg');"></div>
+                <h3>Random Episodes</h3>
+                <p>Desarrollo de una aplicación web que permite decidir qué ver 🎬. Solo ingresa el título de una serie, y la app te sugiere un episodio aleatorio al instante. Ideal para esos momentos de indecisión, ofreciendo una solución rápida y entretenida para los amantes de las series. ✨</p>
+                <div class="project-technologies">
+                    <span class="tech-bubble"><strong>Php</strong></span>
+                    <span class="tech-bubble"><strong>Api Rest</strong></span>
+                    <span class="tech-bubble"><strong>JavaScript</strong></span>
+                </div>
+                <div class="project-links">
+                    <a href="https://github.com/Tobias-Stani/RandomEpisodeTO/blob/master/RandomEpisode.php">Ver Código</a>
+                    <a href="#">Demo</a>
+                </div>
+            </div>
+
+            <div class="project-card" data-aos="fade-up" data-aos-duration="1600">
+                <div class="project-header" style="background-image: url('/assets/proyecto1.jpeg');"></div>
+                <h3>Bot de telegram integrado con jira</h3>
+                <p>Desarrollo de un bot de Telegram integrado con Jira 🤖 que envía dos tipos de mensajes automáticos a los desarrolladores. El dailyMessage recuerda las tareas pendientes del día, mientras que el weeklyMessage resume el progreso semanal, reconociendo logros y ofreciendo apoyo en caso de pocas tareas completadas.</p>
+                <div class="project-technologies">
+                    <span class="tech-bubble"><strong>Php</strong></span>
+                    <span class="tech-bubble"><strong>MySQL</strong></span>
+                    <span class="tech-bubble"><strong>Telegram Api</strong></span>
+                </div>
+                <div class="project-links">
+                    <a href="https://github.com/Tobias-Stani/TelegramBotNotifier">Ver Código</a>
+                    <a href="#">Demo</a>
+                </div>
+            </div>
+
+            <div class="project-card" data-aos="fade-up" data-aos-duration="1600">
+                <div class="project-header" style="background-image: url('/assets/eventJournal.jpeg');"></div>
+                <h3>EventJournal</h3>
+                <p>Desarrollo de EventJournal, una aplicación web creada con Symfony, que permite a los usuarios registrar y organizar sus experiencias en eventos como conciertos, festivales y más. 🎤🎶 Los usuarios pueden puntuar los eventos ⭐, agregar comentarios 💬 y generar reportes 📊, preservando recuerdos y momentos especiales. ✨</p>
+                <div class="project-technologies">
+                    <span class="tech-bubble"><strong>Symfony</strong></span>
+                    <span class="tech-bubble"><strong>Php</strong></span>
+                    <span class="tech-bubble"><strong>MySQL</strong></span>
+                    <span class="tech-bubble"><strong>Docker</strong></span>
+                </div>
+                <div class="project-links">
+                    <a href="https://github.com/Tobias-Stani/EventJournal">Ver Código</a>
+                    <a href="#">Demo</a>
+                </div>
+            </div>
+        </section>
+    </div>
+    
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 1000,
+            once: false,
+            mirror: true
+        });
+    </script>
+</body>
+</html>
